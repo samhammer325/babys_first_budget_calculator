@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'budgets/index'
 
-  root 'balances#index'
-  resources :balances
+  root 'budgets#index'
+  resources :budgets
   
 end

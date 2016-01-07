@@ -29,7 +29,7 @@ newBudget(){
 
 
 render(){
-  let budgets = this.state.budgets.map( budget => {
+  let budgets = this.props.budgets.map( budget => {
     let key = `budget-${budget.id}`;
     return(<Budget key = {key} {...budget} />);
   });
