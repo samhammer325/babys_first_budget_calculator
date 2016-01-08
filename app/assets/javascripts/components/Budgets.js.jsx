@@ -1,7 +1,8 @@
 class Budgets extends React.Component{
   constructor(props){
     super(props);
-
+    this.newBudget = this.newBudget.bind(this);
+    this.state = { budgets: [] };
   }
   componentDidMount(){
     $.ajax({
@@ -26,7 +27,6 @@ class Budgets extends React.Component{
       console.log('erroR');
     });
   }
-      
 
 
   render(){
@@ -42,6 +42,7 @@ class Budgets extends React.Component{
                   <button type='submit' className='waves-effect waves-light btn'>Submit</button>
                 </div>
               </form>
+              {budgets}
             </div>);
   }
 
