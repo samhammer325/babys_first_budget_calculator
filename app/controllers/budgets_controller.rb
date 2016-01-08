@@ -1,18 +1,18 @@
 class BudgetsController < ApplicationController
   def index
     @budgets = Budget.all
-    @bills = Bill.all
   end
 
   def create
-    @budget = Budget.create(budget_params)
-    render json: Budget
+    budget = Budget.create(budget_params)
+    render json: budget
   end
 
   def destroy
     Budget.find(params[:id]).destroy
     head :ok
   end
+
 
   private
 

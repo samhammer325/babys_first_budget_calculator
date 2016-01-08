@@ -1,1 +1,6 @@
-<%= react_component 'Budgets', { budgets: @budgets }%>
+<%= react_component('Budgets') %>
+
+<% @budgets.each do |budget| %>
+  <% bills = budget.bills %>
+  <%= react_component 'Budget', { budget: budget, bills: bills}%>
+<% end %>
