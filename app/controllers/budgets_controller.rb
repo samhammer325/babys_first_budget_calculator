@@ -14,7 +14,8 @@ class BudgetsController < ApplicationController
 
   def destroy
     Budget.find(params[:id]).destroy
-    head :ok
+    @budgets = Budget.all
+    render 'budgets'
   end
 
   private

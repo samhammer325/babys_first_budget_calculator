@@ -12,7 +12,7 @@ render(){
            <div className='col-4'>
              <div className='card-action'>
                <a onClick={this.budgets}> <span className='center'>{this.props.balance}</span></a>
-               <button  className='btn waves-effect white-text' onClick={() => alert(this)}>X</button>
+               <button  className='btn waves-effect white-text' onClick={() => this.props.deleteBudget(this.props.id)}>X</button>
              </div>
              <div className='card-content white-text' onClick={this.loadBill}>
                <p>{this.props.name}</p>

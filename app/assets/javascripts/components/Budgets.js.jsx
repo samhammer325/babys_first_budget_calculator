@@ -2,6 +2,7 @@ class Budgets extends React.Component{
   constructor(props){
     super(props); 
     this.newBudget = this.newBudget.bind(this);
+    this.deleteBudget = this.deleteBudget.bind(this);
     this.state = { budgets: [] }
   }
   componentDidMount(){
@@ -22,26 +23,26 @@ class Budgets extends React.Component{
       // This is where it's failing, figure out why'
       let budgets = this.props.budgets;
       budgets.unshift(data);
-      self.refs.newBudget.value = null;
+      self.refs.newBudget.value = undefined;
       self.setState({ budgets: budgets });
     }).error( data => {
       console.log('erroR');
     });
   }
 
-  deleteBudget() {
+  deleteBudget(id) {
     $.ajax({
-      url: '/boards/' + id,
+      url: '/budgets/' + id,
       type: 'DELETE',
       }).success(data =>  {
-        this.setState({budget: data});
+        this.setState({budgets: data.budgets});
       });
     }
 
   render(){
     let budgets = [];
     this.state.budgets.map( budget => {
-      budgets.push(<Budget key={`budget-${budget.id}`} {...budget} />)
+      budgets.push(<Budget key={`budget-${budget.id}`} {...budget} deleteBudget={this.deleteBudget} />)
     });
     return(<div className='container'>
               <form onSubmit={this.newBudget}>
