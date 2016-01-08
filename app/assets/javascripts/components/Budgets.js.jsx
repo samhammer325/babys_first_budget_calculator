@@ -12,37 +12,38 @@ class Budgets extends React.Component{
     });
   }
 
-newBudget(){
-  $.ajax({
-    url: '/budgets',
-    type: 'POST',
-    data: { budget: { body: this.refs.newBudget.value }}
-  }).success( data => {
-    let budgets = this.state.budgets;
-    budgets.unshift(data.budget);
-    this.refs.newBudget.value = null;
-    this.setState({ budgets: budgets });
-  }).error( data => {
-    console.log('erroR');
-  });
-}
+  newBudget(){
+    $.ajax({
+      url: '/budgets',
+      type: 'POST',
+      data: { budget: { name: this.refs.budgetName.value, balance: this.refs.budgetCap.value }}
+    }).success( data => {
+      let budgets = this.props.budgets;
+      budgets.unshift(data.budget);
+      this.refs.newBudget.value = null;
+      this.setState({ budgets: budgets });
+    }).error( data => {
+      console.log('erroR');
+    });
+  }
+      
 
 
-render(){
-  let budgets = this.props.budgets.map( budget => {
-    let key = `budget-${budget.id}`;
-    return(<Budget key = {key} {...budget} />);
-  });
-  return(<div className='container'>
-            <form onSubmit={this.submitBudget}>
-              <div className='input-field'>
-                <input type='text' placeholder='Budget Name' autoFocus='true' ref='budgetName' />
-                <input type='number' placeholder='Budget Cap' autoFocus='true' ref='budgetCap' />
-                <button type='submit' className='waves-effect waves-light btn'>Submit</button>
-              </div>
-            </form>
-          </div>);
-}
+  render(){
+    let budgets = this.props.budgets.map( budget => {
+      let key = `budget-${budget.id}`;
+      return(<Budget key = {key} {...budget} />);
+    });
+    return(<div className='container'>
+              <form onSubmit={this.newBudget}>
+                <div className='input-field'>
+                  <input type='text' placeholder='Budget Name' autoFocus='true' ref='budgetName' />
+                  <input type='number' placeholder='Budget Cap' autoFocus='true' ref='budgetCap' />
+                  <button type='submit' className='waves-effect waves-light btn'>Submit</button>
+                </div>
+              </form>
+            </div>);
+  }
 
 
 }

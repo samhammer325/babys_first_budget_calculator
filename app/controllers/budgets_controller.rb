@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    budget = Budget.create(budget_params)
+    @budget = Budget.create(budget_params)
     render json: Budget
   end
 
