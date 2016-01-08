@@ -3,7 +3,6 @@ class Budget extends React.Component{
     super(props);
   }
 
-
 render(){
   let bills = this.props.bills.map( bill => {
     let key = `bill-${bill.id}`;
@@ -12,11 +11,11 @@ render(){
   return(<div className='card blue-grey darken-1'>
            <div className='col-4'>
              <div className='card-action'>
-               <a onClick={this.budgets}> <span className='center'>{this.props.budget.balance}</span></a>
-               <a  className='btn waves-effect white-text' onClick={() => this.props.deleteBudget(this.props.id)}>X</a>
+               <a onClick={this.budgets}> <span className='center'>{this.props.balance}</span></a>
+               <button  className='btn waves-effect white-text' onClick={() => alert(this)}>X</button>
              </div>
              <div className='card-content white-text' onClick={this.loadBill}>
-               <p>{this.props.budget.name}</p>
+               <p>{this.props.name}</p>
              </div>
              {bills}
            </div>

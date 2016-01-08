@@ -1,6 +1,10 @@
 class BudgetsController < ApplicationController
   def index
+  end
+
+  def budgets
     @budgets = Budget.all
+    render 'budgets'
   end
 
   def create
@@ -12,7 +16,6 @@ class BudgetsController < ApplicationController
     Budget.find(params[:id]).destroy
     head :ok
   end
-
 
   private
 
