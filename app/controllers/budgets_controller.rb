@@ -1,6 +1,7 @@
 class BudgetsController < ApplicationController
   def index
     @budgets = Budget.all
+    @bills = Bill.all
   end
 
   def create

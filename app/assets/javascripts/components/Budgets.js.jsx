@@ -30,9 +30,14 @@ class Budgets extends React.Component{
 
 
   render(){
+    debugger
     let budgets = this.props.budgets.map( budget => {
       let key = `budget-${budget.id}`;
       return(<Budget key = {key} {...budget} />);
+    });
+    let bills = this.props.bills.map( bill => {
+      let key = `bill-${bill.id}`;
+      return(<Bill key = {key} {...bill} />);
     });
     return(<div className='container'>
               <form onSubmit={this.newBudget}>
@@ -43,7 +48,16 @@ class Budgets extends React.Component{
                 </div>
               </form>
               {budgets}
-            </div>);
+              <form onSubmit={this.newBill}>
+                <div className='input-field'>
+                  <input type='text' placeholder='Bill Name' autoFocus='true' ref='billName' />
+                  <input type='number' placeholder='Bill Cap' autoFocus='true' ref='billCap' />
+                  <button type='submit' className='waves-effect waves-light btn'>Submit</button>
+                </div>
+              </form>
+              {bills}
+            </div>
+            );
   }
 
 
